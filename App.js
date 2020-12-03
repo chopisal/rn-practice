@@ -7,6 +7,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import NavigationList from "./Screens/NavigationList";
 import SalonListDetails from "./Screens/SalonListDetails";
 import TravelListDetail from "./Screens/TravelListDetail";
+import PhotographyListDetails from "./Screens/PhotographyListDetails";
 import navigation from "./config/navigation";
 import { AppLoading } from "expo";
 import { useFonts, Montserrat_400Regular, Montserrat_700Bold } from "@expo-google-fonts/montserrat";
@@ -70,6 +71,11 @@ export default function App() {
         <Stack.Screen
           name="TravelListDetail"
           component={TravelListDetail}
+          options={() => options}
+        />
+        <Stack.Screen
+          name="PhotographyListDetails"
+          component={PhotographyListDetails}
           options={() => options}
         />
       </Stack.Navigator>
