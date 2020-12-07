@@ -7,6 +7,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import NavigationList from "./Screens/NavigationList";
 import SalonListDetails from "./Screens/SalonListDetails";
 import TravelListDetail from "./Screens/TravelListDetail";
+import CardsListDetails from "./Screens/CardsListDetails";
 import PhotographyListDetails from "./Screens/PhotographyListDetails";
 import navigation from "./config/navigation";
 import { AppLoading } from "expo";
@@ -76,6 +77,11 @@ export default function App() {
         <Stack.Screen
           name="PhotographyListDetails"
           component={PhotographyListDetails}
+          options={() => options}
+        />
+        <Stack.Screen
+          name="CardsListDetails"
+          component={CardsListDetails}
           options={() => options}
         />
       </Stack.Navigator>
