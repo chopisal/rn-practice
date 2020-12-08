@@ -9,6 +9,7 @@ import SalonListDetails from "./Screens/SalonListDetails";
 import TravelListDetail from "./Screens/TravelListDetail";
 import CardsListDetails from "./Screens/CardsListDetails";
 import PhotographyListDetails from "./Screens/PhotographyListDetails";
+import CarsDetails from "./Screens/CarsDetails";
 import navigation from "./config/navigation";
 import { AppLoading } from "expo";
 import { useFonts, Montserrat_400Regular, Montserrat_700Bold } from "@expo-google-fonts/montserrat";
@@ -84,6 +85,7 @@ export default function App() {
           component={CardsListDetails}
           options={() => options}
         />
+        <Stack.Screen name="CarsDetails" component={CarsDetails} options={() => options} />
       </Stack.Navigator>
     </NavigationContainer>
   );
