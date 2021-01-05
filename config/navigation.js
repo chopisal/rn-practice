@@ -1,3 +1,4 @@
+import List from "../Screens/List";
 import SalonList from "../Screens/SalonList";
 import TravelList from "../Screens/TravelList";
 import PhotographyList from "../Screens/PhotographyList";
@@ -6,6 +7,7 @@ import CarsList from "../Screens/CarsList";
 import AccordionMenu from "../Screens/AccordionMenu";
 
 export default [
+  { name: "List", label: "Vacation", component: List },
   { name: "SalonList", label: "Salon", component: SalonList },
   { name: "TravelList", label: "Travel", component: TravelList },
   { name: "PhotographyList", label: "Photography", component: PhotographyList },
