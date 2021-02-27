@@ -1,3 +1,10 @@
+/*
+Inspiration: https://dribbble.com/shots/3894781-Urbanears-Headphones
+Twitter: http://twitter.com/mironcatalin
+GitHub: http://github.com/catalinmiron
+Video Tutorial: https://youtu.be/cGTD4yYgEHc
+*/
+
 import React from "react";
 import {
   StyleSheet,
@@ -22,8 +29,8 @@ const CIRCLE_SIZE = width * 0.6;
 
 const Circle = ({ scrollX }) => {
   return (
-    <View style={[StyleSheet.absoluteFill, styles.circleContainer]}>
-      {data.map(({ color }, index) => {
+    <View style={[StyleSheet.absoluteFillObject, styles.circleContainer]}>
+      {data.map(({ color, key }, index) => {
         const inputRange = [
           (index - 0.55) * width,
           index * width,
@@ -41,7 +48,7 @@ const Circle = ({ scrollX }) => {
         return (
           <SharedElement
             key={index}
-            id={`item.${data[index].key}.circle`}
+            id={`item.${key}.circle`}
             style={styles.circle}
           >
             <Animated.View
@@ -108,17 +115,15 @@ const Item = ({ item, index, scrollX, navigation }) => {
     outputRange: [0, 1, 0],
   });
 
-  //   console.log(
-  //     `index: ${index}, width: ${width}, inputRangeOpacity: ${inputRangeOpacity}`
-  //   );
-
   return (
     <TouchableOpacity
       activeOpacity={0.8}
       style={styles.itemStyle}
-      onPress={() => {}}
+      onPress={() => {
+        navigation.navigate("UrbanEarsDetails", { item });
+      }}
     >
-      <SharedElement id={`item.${item.key}.image`} style={{ flex: 1 }}>
+      <SharedElement id={`item.${item.key}.image`} style={styles.imageStyle}>
         <Animated.Image
           source={imageUri}
           style={[
@@ -133,7 +138,10 @@ const Item = ({ item, index, scrollX, navigation }) => {
         <Animated.Text
           style={[
             styles.heading,
-            { opacity, transform: [{ translateY: translateXHeading }] },
+            {
+              opacity,
+              transform: [{ translateX: translateXHeading }],
+            },
           ]}
         >
           {heading}
@@ -141,7 +149,14 @@ const Item = ({ item, index, scrollX, navigation }) => {
         <Animated.Text
           style={[
             styles.description,
-            { opacity, transform: [{ translateX: translateXDescription }] },
+            {
+              opacity,
+              transform: [
+                {
+                  translateX: translateXDescription,
+                },
+              ],
+            },
           ]}
         >
           {description}
@@ -157,13 +172,16 @@ const Pagination = ({ scrollX }) => {
     inputRange,
     outputRange: [-DOT_SIZE, 0, DOT_SIZE],
   });
-  console.log("Pagination==>", inputRange);
   return (
     <View style={[styles.pagination]}>
       <Animated.View
         style={[
           styles.paginationIndicator,
-          { position: "absolute", transform: [{ translateX }] },
+          {
+            position: "absolute",
+            // backgroundColor: 'red',
+            transform: [{ translateX }],
+          },
         ]}
       />
       {data.map((item) => {
@@ -181,7 +199,7 @@ const Pagination = ({ scrollX }) => {
 
 export default function UrbanEarsList({ navigation }) {
   const scrollX = React.useRef(new Animated.Value(0)).current;
-  //   console.log("data=--", data);
+
   return (
     <View style={styles.container}>
       <GoBack />
@@ -190,16 +208,14 @@ export default function UrbanEarsList({ navigation }) {
       <Animated.FlatList
         keyExtractor={(item) => item.key}
         data={data}
-        renderItem={({ item, index }) => {
-          return (
-            <Item
-              item={item}
-              index={index}
-              scrollX={scrollX}
-              navigation={navigation}
-            />
-          );
-        }}
+        renderItem={({ item, index }) => (
+          <Item
+            item={item}
+            index={index}
+            scrollX={scrollX}
+            navigation={navigation}
+          />
+        )}
         pagingEnabled
         showsHorizontalScrollIndicator={false}
         horizontal
@@ -312,6 +328,7 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
     fontWeight: "800",
   },
+
   circleContainer: {
     alignItems: "center",
     justifyContent: "center",

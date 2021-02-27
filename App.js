@@ -11,6 +11,7 @@ import TravelListDetail from "./Screens/TravelListDetail";
 import CardsListDetails from "./Screens/CardsListDetails";
 import PhotographyListDetails from "./Screens/PhotographyListDetails";
 import CarsDetails from "./Screens/CarsDetails";
+import UrbanEarsDetails from "./Screens/UrbanEarsDetails";
 import navigation from "./config/navigation";
 import { AppLoading } from "expo";
 import {
@@ -102,6 +103,11 @@ export default function App() {
         <Stack.Screen
           name="CarsDetails"
           component={CarsDetails}
+          options={() => options}
+        />
+        <Stack.Screen
+          name="UrbanEarsDetails"
+          component={UrbanEarsDetails}
           options={() => options}
         />
       </Stack.Navigator>
